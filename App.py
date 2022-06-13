@@ -6,7 +6,7 @@ import base64
 from io import BytesIO
 from PIL import Image
 
-faceCascade = cv2.CascadeClassifier(cv2.haarcascades+'haarcascade_frontalface_default.xml')
+faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 class VideoTransformer(VideoTransformerBase):
     def __init__(self):
