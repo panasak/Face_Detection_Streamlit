@@ -1,38 +1,19 @@
 import cv2
 import streamlit as st
 import numpy as np
-import base64
-from io import BytesIO
 from PIL import Image
 
 faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-def transform(self, frame):
-    img = frame.to_ndarray(format="bgr24")
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = faceCascade.detectMultiScale(gray, 1.3, 5)
-    i =self.i+1
-    for (x, y, w, h) in faces:
-        cv2.rectangle(img, (x, y), (x + w, y + h), (95, 207, 30), 3)
-        cv2.rectangle(img, (x, y - 40), (x + w, y), (95, 207, 30), -1)
-        cv2.putText(img, 'F-' + str(i), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
-
-    return img
-
-def get_image_download_link(img,filename,text):
-    buffered = BytesIO()
-    img.save(buffered, format="JPEG")
-    img_str = base64.b64encode(buffered.getvalue()).decode()
-    href =  f'<a href="data:file/jpg;base64,{img_str}" download="{filename}">{text}</a>'
-    return href
-
 def face_detect(image,sf,mn):
     i = 0
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    #faces is a list
     faces = faceCascade.detectMultiScale(gray,sf,mn)
     for (x, y, w, h) in faces:
         i = i+1
         cv2.rectangle(image, (x, y), (x + w, y + h), (237, 30, 72), 3)
+        # This is the rectangle on top of the rectangle with the text in them(F-1)
         cv2.rectangle(image, (x, y - 40), (x + w, y),(237, 30, 72) , -1)
         cv2.putText(image, 'F-'+str(i), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
     resi_image = cv2.resize(image, (350, 350))
