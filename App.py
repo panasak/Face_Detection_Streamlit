@@ -42,5 +42,3 @@ if img_file is not None:
         st.error("No People found!!")
     else:
         st.success("Total number of People : " + str(count))
-        result = Image.fromarray(orignal_image)
-        st.markdown(get_image_download_link(result, img_file.name, 'Download Image'), unsafe_allow_html=True)
