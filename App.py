@@ -41,8 +41,6 @@ def face_detect(image,sf,mn):
 
 st.title("Face Detection using OpenCV")
 
-
-st.sidebar.markdown("# Choose Input Source")
 st.markdown(
     '''<h4 style='text-align: left; color: #d73b5c;'>* Face Detection is done using Haar Cascade & OpenCV"</h4>''',
     unsafe_allow_html=True)
@@ -50,7 +48,7 @@ img_file = st.file_uploader("Choose an Image", type=['jpg', 'jpeg', 'jfif', 'png
 if img_file is not None:
     img = np.array(Image.open(img_file))
     img1 = cv2.resize(img, (350, 350))
-    place_h = st.beta_columns(2)
+    place_h = st.columns(2)
     place_h[0].image(img1)
     st.markdown(
         '''<h4 style='text-align: left; color: #d73b5c;'>* Increase & Decrease it to get better accuracy.</h4>''',
